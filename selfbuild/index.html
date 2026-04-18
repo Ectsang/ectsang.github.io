@@ -652,56 +652,6 @@
       color: #444;
     }
 
-    .submit-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .form-divider {
-      text-align: center;
-      margin: 28px 0;
-      position: relative;
-    }
-
-    .form-divider::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .form-divider span {
-      position: relative;
-      background: var(--bg);
-      padding: 0 16px;
-      font-size: 0.85rem;
-      color: #444;
-      letter-spacing: 0.05em;
-    }
-
-    .cal-btn {
-      display: inline-block;
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid rgba(102,170,153,0.3);
-      text-decoration: none;
-      padding: 14px 36px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-    }
-
-    .cal-btn:hover {
-      background: rgba(102,170,153,0.06);
-      border-color: rgba(102,170,153,0.5);
-      transform: translateY(-1px);
-    }
-
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -1008,41 +958,26 @@
       <p class="form-sub">Taking 3 people this quarter. Not a commitment. I read every response and reply personally.</p>
 
       <div class="form-card">
-        <form id="selfbuild-form" onsubmit="return submitForm(event)">
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" id="name" required placeholder="Your name">
+            <input type="text" name="name" required placeholder="Your name">
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" id="email" required placeholder="you@email.com">
+            <input type="email" name="email" required placeholder="you@email.com">
           </div>
           <div class="form-group">
             <label>What do you do?</label>
-            <input type="text" name="role" id="role" placeholder="Your role, industry, or current situation">
+            <input type="text" name="role" placeholder="Your role, industry, or current situation">
           </div>
           <div class="form-group">
             <label>What's the biggest thing eating your time or holding you back?</label>
-            <textarea name="bottleneck" id="bottleneck" placeholder="The more specific, the better I can tell if this is the right fit."></textarea>
+            <textarea name="bottleneck" placeholder="The more specific, the better I can tell if this is the right fit."></textarea>
           </div>
-          <button type="submit" class="submit-btn" id="submit-btn">I'm interested</button>
+          <button type="submit" class="submit-btn">I'm interested</button>
           <p class="form-note">No spam. No list. Just a real conversation if it's a fit.</p>
         </form>
-
-        <div id="form-success" style="display:none; text-align:center; padding: 40px 0;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h3 style="color:#f0f0f0; margin:16px 0 8px; font-size:1.2rem;">Got it. I'll be in touch.</h3>
-          <p style="color:#888; font-size:0.95rem;">I read every response personally. If it's a fit, I'll reach out within a few days.</p>
-        </div>
-      </div>
-
-      <div class="form-divider">
-        <span>or</span>
-      </div>
-
-      <div style="text-align:center;">
-        <a href="https://cal.com/eric-t/15min" target="_blank" class="cal-btn">Book a call directly</a>
-        <p class="form-note">15 minutes. No pitch. Just a conversation to see if this is a fit.</p>
       </div>
     </section>
 
@@ -1051,35 +986,6 @@
   <footer>
     <a href="https://www.linkedin.com/in/tsangeric/">LinkedIn</a>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    emailjs.init('d55iuLNUw_9o2ifXh');
-
-    function submitForm(e) {
-      e.preventDefault();
-      var btn = document.getElementById('submit-btn');
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-
-      emailjs.send('service_4bivn6r', 'template_tba549l', {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        role: document.getElementById('role').value,
-        bottleneck: document.getElementById('bottleneck').value,
-      }).then(function() {
-        document.getElementById('selfbuild-form').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }, function(err) {
-        btn.disabled = false;
-        btn.textContent = 'I\'m interested';
-        alert('Something went wrong. Try emailing me directly.');
-        console.error(err);
-      });
-
-      return false;
-    }
-  </script>
 
 </body>
 </html>

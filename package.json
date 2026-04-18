@@ -1,0 +1,8 @@
+{
+  "name": "selfbuild",
+  "private": true,
+  "scripts": {
+    "gate": "node gates.js",
+    "dev": "python3 -m http.server 8888"
+  }
+}

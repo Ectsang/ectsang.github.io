@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Build - Your Personal AI System, Built For You</title>
+  <meta name="description" content="A custom AI system built around your life, your work, your goals. Your strengths get amplified. Your weaknesses stop mattering.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #d0d0d0;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 20px;
+    }
+
+    .hero-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5a7;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: #888;
+    }
+
+    /* Story */
+    .story {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .story p {
+      color: #aaa;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .story p strong {
+      color: #ddd;
+    }
+
+    .story .highlight {
+      color: #ccc;
+      font-size: 1.15rem;
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid #5a7;
+    }
+
+    /* What */
+    section {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    section p {
+      margin-bottom: 16px;
+      color: #aaa;
+    }
+
+    /* Steps */
+    .steps {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .steps li {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .steps li .step-time {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #5a7;
+      padding-top: 2px;
+    }
+
+    .steps li h3 {
+      font-size: 1.05rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .steps li p {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Fit */
+    .fit-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .fit-list li {
+      padding: 8px 0;
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    .fit-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #5a7;
+      border-radius: 50%;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .not-fit li::before {
+      background: #665;
+    }
+
+    .not-fit {
+      margin-top: 24px;
+    }
+
+    .not-fit-label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 8px;
+      margin-top: 32px;
+    }
+
+    /* Scarcity */
+    .scarcity {
+      background: rgba(85,170,119,0.04);
+      border: 1px solid rgba(85,170,119,0.12);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .scarcity .number {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #5a7;
+    }
+
+    .scarcity .number-label {
+      color: #888;
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+
+    .scarcity .price {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+
+    .scarcity .price strong {
+      color: #fff;
+      font-size: 1.3rem;
+    }
+
+    /* Form */
+    .form-section {
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .form-section h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-section .form-sub {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #ddd;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #5a7;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: #5a7;
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .submit-btn:hover {
+      background: #6b8;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #333;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: #888; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 20px; }
+      section { padding: 36px 0; }
+      .steps li { grid-template-columns: 1fr; gap: 4px; }
+      .steps li .step-time { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-label">Self Build</div>
+      <h1>I build your personal AI system. You keep it forever.</h1>
+      <p class="subtitle">Custom to your life, your work, your blind spots. Not a course. Not a template. A working system that makes your weaknesses irrelevant and your strengths compound.</p>
+    </div>
+
+    <div class="story">
+      <p>18 months ago I got laid off. Spent a year applying to jobs and going nowhere. I knew AI was big but couldn't figure out how to make it actually work for my life.</p>
+      <p>Then I stopped trying to use AI as a tool and started building it into a system. A system that knows my goals, manages my projects, does my research, handles the things I'm bad at.</p>
+      <p class="highlight">Today I run 7+ projects, trade algorithmic strategies, build payment infrastructure as a CTO, write a newsletter, and raise a daughter. Not because I work more hours. Because the system handles what I can't.</p>
+      <p><strong>The thing I figured out:</strong> AI doesn't replace your weaknesses if you just chat with it. You need a system designed around YOUR life that runs continuously. I spent 18 months building mine through trial and error. I'm now building them for other people in 2 weeks.</p>
+    </div>
+
+    <section>
+      <h2>How it works</h2>
+      <p>This is a done-with-you build. I design and build your system. You own it.</p>
+
+      <ul class="steps">
+        <li>
+          <div class="step-time">Week 1</div>
+          <div>
+            <h3>The interview</h3>
+            <p>90 minutes. I dig into your work, your goals, what drains you, what you avoid, and where AI would change the most. This isn't a questionnaire. It's a real conversation.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 1-2</div>
+          <div>
+            <h3>The build</h3>
+            <p>I build your personal AI system from scratch. Knowledge base, workflows, automations, all wired to your specific domain. You don't need to be technical.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 2</div>
+          <div>
+            <h3>Handoff</h3>
+            <p>90 minutes. I walk you through everything, show you how to use and extend it. Then 2 weeks of support while you make it yours.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>This is for you if</h2>
+      <ul class="fit-list">
+        <li>You're good at your job but feel like you're operating at 40% of your potential</li>
+        <li>You've tried AI tools but nothing stuck beyond basic chatting</li>
+        <li>You want a second income path or side project but can't find the bandwidth</li>
+        <li>You'd pay to skip 12-18 months of figuring this out alone</li>
+        <li>You're willing to use something new every day for 2 weeks</li>
+      </ul>
+
+      <p class="not-fit-label">Probably not for you if:</p>
+      <ul class="fit-list not-fit">
+        <li>You want a course you can watch passively</li>
+        <li>You're looking for a quick hack, not a real system change</li>
+        <li>You're not willing to spend 20 minutes a day using it</li>
+      </ul>
+    </section>
+
+    <div class="scarcity">
+      <div class="number">3</div>
+      <div class="number-label">spots available this quarter</div>
+      <div class="price">Investment: <strong>$5,000</strong></div>
+    </div>
+
+    <section class="form-section">
+      <h2>Interested? Tell me about yourself.</h2>
+      <p class="form-sub">Not a commitment. I'll read every response and reply personally.</p>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" required placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>What do you do?</label>
+          <input type="text" name="role" placeholder="Your role, industry, or situation">
+        </div>
+        <div class="form-group">
+          <label>What's the biggest thing holding you back right now?</label>
+          <textarea name="bottleneck" placeholder="Be honest. The more specific, the better I can tell if this is right for you."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">I'm interested</button>
+        <p class="form-note">No spam. No list. Just a conversation if it's a fit.</p>
+      </form>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="https://www.linkedin.com/in/tsangeric/">LinkedIn</a>
+  </footer>
+
+</body>
+</html>

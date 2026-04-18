@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Build - Your Personal AI System, Built For You</title>
+  <meta name="description" content="I build a personal AI system around your life and work. Your strengths compound. Your blind spots get covered. Done in 2 weeks.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #d0d0d0;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 20px;
+    }
+
+    .hero-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5a7;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: #888;
+    }
+
+    /* Story */
+    .story {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .story p {
+      color: #aaa;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .story p strong {
+      color: #ddd;
+    }
+
+    .story .highlight {
+      color: #ccc;
+      font-size: 1.15rem;
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid #5a7;
+    }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    section p {
+      margin-bottom: 16px;
+      color: #aaa;
+    }
+
+    /* Demo */
+    .demo-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .demo-box .demo-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a7;
+      margin-bottom: 16px;
+    }
+
+    .demo-scenario {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .demo-scenario:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .demo-scenario .persona {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .demo-scenario .before {
+      color: #966;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .demo-scenario .after {
+      color: #7a7;
+      font-size: 0.95rem;
+    }
+
+    .demo-scenario .before::before { content: 'Before: '; font-weight: 600; }
+    .demo-scenario .after::before { content: 'After: '; font-weight: 600; }
+
+    /* Steps */
+    .steps {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .steps li {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .steps li .step-time {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #5a7;
+      padding-top: 2px;
+    }
+
+    .steps li h3 {
+      font-size: 1.05rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .steps li p {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Fit */
+    .fit-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .fit-list li {
+      padding: 8px 0;
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    .fit-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #5a7;
+      border-radius: 50%;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .not-fit li::before {
+      background: #665;
+    }
+
+    .not-fit-label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 8px;
+      margin-top: 32px;
+    }
+
+    /* Technical reassurance */
+    .reassurance {
+      background: rgba(85,170,119,0.04);
+      border: 1px solid rgba(85,170,119,0.1);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+
+    .reassurance strong {
+      color: #ccc;
+    }
+
+    /* ROI */
+    .roi-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .roi-box .roi-line {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .roi-box .roi-math {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 16px 0;
+    }
+
+    .roi-box .roi-note {
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    /* Form */
+    .form-section {
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .form-section h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-section .form-sub {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #ddd;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #5a7;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: #5a7;
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .submit-btn:hover {
+      background: #6b8;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #333;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: #888; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 20px; }
+      section, .story { padding: 36px 0; }
+      .steps li { grid-template-columns: 1fr; gap: 4px; }
+      .steps li .step-time { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-label">Self Build</div>
+      <h1>I build your personal AI system. You keep it forever.</h1>
+      <p class="subtitle">Custom to your life, your work, your blind spots. In 2 weeks, you're operating differently. No technical skills required.</p>
+    </div>
+
+    <div class="story">
+      <p>18 months ago I got laid off. Spent a year applying to jobs and going nowhere.</p>
+      <p>I knew AI was important. I was using ChatGPT like everyone else. It was useful. It didn't change anything.</p>
+      <p>Then I stopped treating AI as a tool and started building it into a system. A system that knows my goals, runs my workflows, does research while I sleep, and handles the things I've always been bad at.</p>
+      <p class="highlight">Today I run 7+ projects, trade algorithmic strategies, build products as a CTO, publish a weekly newsletter, and raise my daughter. Same 24 hours. No team. Just a system built around how I actually work.</p>
+      <p><strong>What I figured out:</strong> Chatting with AI doesn't change your life. A system designed around YOUR specific strengths and weaknesses does. I spent 18 months building mine through trial and error. Now I build them for other people in 2 weeks.</p>
+    </div>
+
+    <section>
+      <h2>What this looks like in practice</h2>
+      <p>Every Self Build is different because every person is different. Here's what it might look like for someone like you:</p>
+
+      <div class="demo-box">
+        <div class="demo-label">Example transformations</div>
+
+        <div class="demo-scenario">
+          <div class="persona">Consultant who's great with clients but terrible at BD</div>
+          <div class="before">Spends Sunday nights dreading the week's outreach. Posts on LinkedIn once a month. Pipeline is always empty.</div>
+          <div class="after">AI researches prospects, drafts personalized outreach in her voice, maintains a content calendar. She reviews and sends. Pipeline stays full.</div>
+        </div>
+
+        <div class="demo-scenario">
+          <div class="persona">Product leader drowning in context-switching</div>
+          <div class="before">12 Slack channels, 6 docs open, can't remember what was decided last Tuesday. Strategic thinking happens at midnight.</div>
+          <div class="after">AI captures decisions across all channels, surfaces what needs attention, drafts weekly updates. She thinks strategically at 9am instead of midnight.</div>
+        </div>
+
+        <div class="demo-scenario">
+          <div class="persona">Director between jobs, building a second path</div>
+          <div class="before">Applying to 10 jobs a week. Gets interviews but no offers. Knows he should "build something" but doesn't know where to start.</div>
+          <div class="after">AI manages job pipeline AND builds a parallel project. Automated research, content, outreach. Two paths running at once instead of one.</div>
+        </div>
+      </div>
+
+      <div class="reassurance">
+        <strong>You don't need to be technical.</strong> I handle the setup. You tell me about your life, I build the system, and I teach you how to use it. If you can use email, you can use this.
+      </div>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+
+      <ul class="steps">
+        <li>
+          <div class="step-time">Week 1</div>
+          <div>
+            <h3>The interview</h3>
+            <p>90 minutes, one-on-one. I dig into your work, your goals, what drains you, what you avoid, where you're leaving potential on the table. Not a questionnaire. A real conversation that shapes everything I build.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 1-2</div>
+          <div>
+            <h3>The build</h3>
+            <p>I design and build your system from scratch. Knowledge base, AI workflows, automations, all wired to your specific domain and priorities. Everything is personalized. No two builds are the same.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 2</div>
+          <div>
+            <h3>Handoff</h3>
+            <p>90 minutes. I walk you through your system, show you how to use it daily, and how to grow it over time. Then 2 weeks of direct support while you make it yours.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>This is for you if</h2>
+      <ul class="fit-list">
+        <li>You're good at what you do but feel like you're operating at a fraction of your potential</li>
+        <li>You've tried AI tools but nothing stuck beyond basic chatting</li>
+        <li>You want a second path (side project, income stream, career pivot) but can't find the bandwidth</li>
+        <li>You'd rather pay someone who's done it than spend a year figuring it out alone</li>
+        <li>You'll commit to using the system daily for at least 2 weeks</li>
+      </ul>
+
+      <p class="not-fit-label">Not the right fit if:</p>
+      <ul class="fit-list not-fit">
+        <li>You want a course to watch passively</li>
+        <li>You're looking for a quick hack, not a real change in how you operate</li>
+        <li>You think AI is a fad</li>
+      </ul>
+    </section>
+
+    <div class="roi-box">
+      <div class="roi-line">If this saves you 5 hours a week</div>
+      <div class="roi-math">That's 260 hours a year back in your life.</div>
+      <div class="roi-line">At $100/hr, that's $26,000 in recovered capacity.</div>
+      <div class="roi-note">Most people get more than 5 hours. Some get 10+.</div>
+    </div>
+
+    <section class="form-section">
+      <h2>Interested? Tell me about yourself.</h2>
+      <p class="form-sub">3 spots available this quarter. Not a commitment. I read every response and reply personally.</p>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" required placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>What do you do?</label>
+          <input type="text" name="role" placeholder="Your role, industry, or current situation">
+        </div>
+        <div class="form-group">
+          <label>What's the biggest thing holding you back right now?</label>
+          <textarea name="bottleneck" placeholder="The more specific you are, the better I can tell if this is the right fit."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">I'm interested</button>
+        <p class="form-note">No spam. No list. Just a real conversation if it's a fit.</p>
+      </form>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="https://www.linkedin.com/in/tsangeric/">LinkedIn</a>
+  </footer>
+
+</body>
+</html>

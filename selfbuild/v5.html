@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self Build - Your Personal AI System, Built For You</title>
+  <meta name="description" content="I build a personal AI system around your life and work. Your strengths compound. Your blind spots get covered. Done in 2 weeks.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+      background: #09090e;
+      color: #c8c8c8;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      padding: 80px 0 20px;
+    }
+
+    .hero-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6a9;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 2.8rem);
+      font-weight: 700;
+      color: #f0f0f0;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: #888;
+    }
+
+    /* Story */
+    .story {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .story p {
+      color: #a0a0a0;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .story p strong {
+      color: #ddd;
+    }
+
+    .story .highlight {
+      color: #ccc;
+      font-size: 1.15rem;
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid #6a9;
+    }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      color: #f0f0f0;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    section p {
+      margin-bottom: 16px;
+      color: #a0a0a0;
+    }
+
+    /* Demo scenarios */
+    .demo-box {
+      background: rgba(255,255,255,0.015);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .demo-box .demo-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6a9;
+      margin-bottom: 16px;
+    }
+
+    .demo-scenario {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .demo-scenario:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .demo-scenario .persona {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .demo-scenario .before {
+      color: #b07070;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .demo-scenario .after {
+      color: #70a080;
+      font-size: 0.95rem;
+    }
+
+    .demo-scenario .before::before { content: 'Before: '; font-weight: 600; }
+    .demo-scenario .after::before { content: 'After: '; font-weight: 600; }
+
+    /* Day in the life */
+    .day-intro {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .day-timeline {
+      list-style: none;
+      margin: 24px 0;
+      position: relative;
+    }
+
+    .day-timeline::before {
+      content: '';
+      position: absolute;
+      left: 35px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .day-timeline li {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .day-timeline li .time {
+      font-size: 0.85rem;
+      color: #6a9;
+      text-align: right;
+      padding-top: 1px;
+    }
+
+    .day-timeline li .event {
+      font-size: 0.95rem;
+      color: #a0a0a0;
+    }
+
+    .day-timeline li .event strong {
+      color: #ccc;
+    }
+
+    /* Steps */
+    .steps {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .steps li {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .steps li .step-time {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #6a9;
+      padding-top: 2px;
+    }
+
+    .steps li h3 {
+      font-size: 1.05rem;
+      color: #f0f0f0;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .steps li p {
+      color: #888;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Fit */
+    .fit-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .fit-list li {
+      padding: 8px 0;
+      color: #a0a0a0;
+      font-size: 1rem;
+    }
+
+    .fit-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #6a9;
+      border-radius: 50%;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .not-fit li::before {
+      background: #665;
+    }
+
+    .not-fit-label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 8px;
+      margin-top: 32px;
+    }
+
+    /* Reassurance */
+    .reassurance {
+      background: rgba(102,170,153,0.04);
+      border: 1px solid rgba(102,170,153,0.1);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 0.95rem;
+      color: #a0a0a0;
+    }
+
+    .reassurance strong {
+      color: #ccc;
+    }
+
+    .reassurance p {
+      margin-bottom: 8px;
+      color: #a0a0a0;
+    }
+
+    .reassurance p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ROI */
+    .roi-box {
+      background: rgba(255,255,255,0.015);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 32px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .roi-box .roi-line {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .roi-box .roi-math {
+      color: #f0f0f0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 16px 0;
+    }
+
+    .roi-box .roi-note {
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    /* Form */
+    .form-section {
+      padding: 60px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .form-section h2 {
+      font-size: 1.4rem;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-section .form-sub {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #ddd;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #6a9;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: #6a9;
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .submit-btn:hover {
+      background: #7ba;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #333;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: #888; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 20px; }
+      section, .story { padding: 36px 0; }
+      .steps li { grid-template-columns: 1fr; gap: 4px; }
+      .day-timeline li { grid-template-columns: 56px 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-label">Self Build</div>
+      <h1>I build your personal AI system. You keep it forever.</h1>
+      <p class="subtitle">Custom to your life, your work, your blind spots. In 2 weeks, you're operating differently. Works for any profession.</p>
+    </div>
+
+    <div class="story">
+      <p>18 months ago I got laid off. Spent a year applying to jobs and going nowhere.</p>
+      <p>I was using ChatGPT like everyone else. Useful for one-off questions. Didn't change how I operated.</p>
+      <p>Then I stopped treating AI as a tool I open when I need help and started building it into a system that runs alongside my life.</p>
+      <p class="highlight">Today I run 7+ projects, trade algorithmic strategies, build products as a CTO, publish a weekly newsletter, and raise my daughter. Same 24 hours. No team. Just a system designed around how I actually work.</p>
+      <p><strong>What changed everything:</strong> Chatting with AI doesn't change your life. A system designed around YOUR specific strengths, weaknesses, and goals does. I spent 18 months building mine through trial and error. Now I build them for other people in 2 weeks.</p>
+    </div>
+
+    <section>
+      <h2>What this looks like for real people</h2>
+      <p>Every Self Build is different. Here's what it could look like depending on your world:</p>
+
+      <div class="demo-box">
+        <div class="demo-label">Example transformations</div>
+
+        <div class="demo-scenario">
+          <div class="persona">Sales leader who crushes quota but burns 60 hours to do it</div>
+          <div class="before">Manually researches every prospect. 2 hours prepping each big meeting. Sunday nights building the week's outreach list.</div>
+          <div class="after">AI researches prospects overnight, drafts personalized prep briefs, prioritizes the pipeline. He preps in 20 minutes, not 2 hours. Home for dinner.</div>
+        </div>
+
+        <div class="demo-scenario">
+          <div class="persona">Consultant who delivers great work but has an empty pipeline</div>
+          <div class="before">Feast-or-famine. When she's on a project, BD stops. When a project ends, she scrambles for the next one.</div>
+          <div class="after">AI maintains her content calendar, researches prospects, and queues outreach in her voice. Pipeline runs whether she's busy or not.</div>
+        </div>
+
+        <div class="demo-scenario">
+          <div class="persona">Creative lead drowning in everything that isn't the actual work</div>
+          <div class="before">3 hours a day writing specs, status updates, and stakeholder emails. Actual creative work gets squeezed into whatever's left.</div>
+          <div class="after">AI drafts status updates, formats specs from her notes, handles the communication overhead. She designs for 6 hours a day instead of 3.</div>
+        </div>
+
+        <div class="demo-scenario">
+          <div class="persona">Director between jobs, building a second path</div>
+          <div class="before">Applying to 10 jobs a week. No offers. Knows he should build something but can't figure out where to start.</div>
+          <div class="after">AI manages the job pipeline AND builds a parallel project. Research, content, outreach, all running. Two paths at once instead of one failing path.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What a Tuesday looks like after your Self Build</h2>
+      <p class="day-intro">The specifics depend on your work. But the feeling is the same: the system is already working when you sit down.</p>
+
+      <ul class="day-timeline">
+        <li>
+          <div class="time">morning</div>
+          <div class="event">You open your dashboard. <strong>Overnight, AI sorted your inbox, flagged what needs you, and drafted responses for the rest.</strong> You review and send in minutes, not an hour.</div>
+        </li>
+        <li>
+          <div class="time">9am</div>
+          <div class="event">Your daily brief is ready. <strong>What happened yesterday, what's due today, and something you said you'd follow up on last week</strong> that you forgot. The system didn't.</div>
+        </li>
+        <li>
+          <div class="time">10am</div>
+          <div class="event">Deep work. Your system already pulled together <strong>the context, research, and your own previous notes</strong> for whatever you're focused on. You start sharp instead of spending 30 minutes remembering where you left off.</div>
+        </li>
+        <li>
+          <div class="time">afternoon</div>
+          <div class="event">You have a meeting. <strong>Prep is already done.</strong> Background on the person, relevant context, talking points. You review in 5 minutes instead of building it from scratch.</div>
+        </li>
+        <li>
+          <div class="time">end of day</div>
+          <div class="event">The system <strong>logs what you accomplished and queues tomorrow.</strong> You close the laptop. Present for the rest of your evening.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it works</h2>
+
+      <ul class="steps">
+        <li>
+          <div class="step-time">Week 1</div>
+          <div>
+            <h3>The interview</h3>
+            <p>90 minutes, one-on-one. I dig into your work, goals, what drains you, what you avoid, where you're leaving potential on the table. Not a questionnaire. A real conversation that shapes everything I build.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 1-2</div>
+          <div>
+            <h3>The build</h3>
+            <p>I design and build your system from scratch. Knowledge base, AI workflows, automations, all wired to your domain and priorities. No two builds are the same.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-time">Week 2</div>
+          <div>
+            <h3>Handoff</h3>
+            <p>90 minutes. I walk you through your system, show you how to use it daily, and how to grow it over time. Then 2 weeks of direct access to me while you make it yours.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>This is for you if</h2>
+      <ul class="fit-list">
+        <li>You're capable but feel like you're operating at a fraction of your potential</li>
+        <li>You've tried AI tools but nothing changed how you actually work</li>
+        <li>You want a second path (side project, income stream, career pivot) but can't find the bandwidth</li>
+        <li>You'd rather pay someone who's done it than spend a year figuring it out alone</li>
+        <li>You'll use the system daily for at least 2 weeks</li>
+      </ul>
+
+      <p class="not-fit-label">Not the right fit if:</p>
+      <ul class="fit-list not-fit">
+        <li>You want a course to watch passively</li>
+        <li>You're looking for a quick hack, not a real change in how you operate</li>
+        <li>You already build your own AI systems (you don't need me)</li>
+      </ul>
+    </section>
+
+    <div class="reassurance">
+      <p><strong>Works for any profession.</strong> You don't need to be technical. I handle the setup, you tell me about your life, and I teach you how to use what I build. If you can use email, you can use this.</p>
+      <p><strong>Your data stays yours.</strong> Everything lives on your devices. Nothing is stored on my servers or shared with anyone. You own the entire system.</p>
+    </div>
+
+    <div class="roi-box">
+      <div class="roi-line">If this saves you 5 hours a week</div>
+      <div class="roi-math">That's 260 hours a year back in your life.</div>
+      <div class="roi-line">Less than the cost of a part-time hire. More leverage than a full-time one.</div>
+      <div class="roi-note">Most people save more than 5. Some save 10+.</div>
+    </div>
+
+    <section class="form-section">
+      <h2>Interested? Tell me about yourself.</h2>
+      <p class="form-sub">Taking 3 people this quarter. Not a commitment. I read every response and reply personally.</p>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" required placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>What do you do?</label>
+          <input type="text" name="role" placeholder="Your role, industry, or current situation">
+        </div>
+        <div class="form-group">
+          <label>What's the biggest thing eating your time or holding you back?</label>
+          <textarea name="bottleneck" placeholder="The more specific, the better I can tell if this is the right fit."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">I'm interested</button>
+        <p class="form-note">No spam. No list. Just a real conversation if it's a fit.</p>
+      </form>
+    </section>
+
+  </div>
+
+  <footer>
+    <a href="https://www.linkedin.com/in/tsangeric/">LinkedIn</a>
+  </footer>
+
+</body>
+</html>
